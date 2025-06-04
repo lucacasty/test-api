@@ -1,42 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14;
+  font-family: 'Montserrat', sans-serif, system-ui;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem;
+  align-items: center;
+  line-height: 2;
+}
+
+.app-name {
+  font-weight: 600;
+  display: flex;
+}
+
+.app-name div {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0 1rem;
+  border-radius: 1rem;
+}
+
+.app-name span {
+  font-family: cursive;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h3 {
+  font-size: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+button {
+  border-radius: 30%;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:hover {
+  opacity: 0.9;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.search-input {
+  resize: none;
+  flex: 1;
+  background: transparent;
+  outline: none;
+  height: 20rem;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  font-size: inherit;
 }
 
-.card {
-  padding: 2em;
+.searchBar-container {
+  align-self: flex-end;
+  width: 90%;
 }
 
-.read-the-docs {
-  color: #888;
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.searchBar button {
+  background-color: rgb(63, 128, 226);
+  color: white;
+  flex: 0;
+  height: 2.5em;
+  padding: 0 2em;
+}
+
+.searchBar button:disabled {
+  background-color: rgb(162, 192, 238);
+}
+
+.chat-container {
+  width: 50%;
+  margin-top: 3em;
+}
+
+.chatConversations {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-prompt {
+  align-self: flex-end;
+  margin: 1rem 0;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+}
+
+.chat-container button {
+  background-color: rgb(205, 56, 56);
+  color: white;
+  padding: 0.5em 1.5em;
+  margin: 2rem 0;
 }
