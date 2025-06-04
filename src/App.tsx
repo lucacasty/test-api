@@ -70,7 +70,7 @@ const App = () => {
           },
         ],
         model: 'llama3-8b-8192',
-      });
+      });3
 
       const responseContent =
         chatCompletion.choices[0]?.message?.content || 'No response';
@@ -131,7 +131,7 @@ const App = () => {
     <>
       <AppName>
         <div>
-          <span>Grëg's </span>ChatBot
+          <span>Luca's </span>ChatBot
         </div>
       </AppName>
       {state.isHeadersVisible && (
