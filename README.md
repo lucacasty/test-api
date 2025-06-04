@@ -22,7 +22,9 @@ cd nome-progetto
 ```
 
 ### Installazione dipendenze (Node)
+```bash
 npm install
+```
 
 ### Configurazione ambiente
 Crea un file .env nella root del progetto e aggiungi la chiave API di Groq:
