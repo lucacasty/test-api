@@ -5,20 +5,7 @@ interface Props {
 }
 
 const SearchBar = ({ children }: Props) => {
-  return 
-    <div className="searchBar-container">
-      <SearchBar>
-        <textarea
-          className="search-input"
-          placeholder="Enter your text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-        />
-        <Button textContent="Send" handleClick={handleSend} />
-      </SearchBar>
-    </div>
-  ;
+  return <div className="searchBar">{children}</div>;
 };
 
 export default SearchBar;
