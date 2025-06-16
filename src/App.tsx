@@ -17,9 +17,15 @@ interface ChatMessage {
   response: string;
 }
 
+interface HistoryMessage {
+  role: string;
+  content: string;
+}
+
 interface AppState {
   inputValue: string;
   chatMessages: ChatMessage[];
+  historyMessages: HistoryMessage[];
   isChatVisible: boolean;
   isHeadersVisible: boolean;
 }
@@ -32,6 +38,7 @@ const App = () => {
       return {
         inputValue: '',
         chatMessages: [],
+        historyMessages: [],
         isChatVisible: false,
         isHeadersVisible: true,
       };
@@ -64,26 +71,28 @@ const App = () => {
     try {
       const chatCompletion = await groq.chat.completions.create({
         messages: [
+          ...state.historyMessages,
           {
             role: 'user',
-            content: state.inputValue,
+            content: 'Rispondimi in italiano, rispondi solo a quello che ti scrivo ora:' + state.inputValue,
           },
         ],
         model: 'llama3-8b-8192',
-      });3
+      });
 
       const responseContent =
         chatCompletion.choices[0]?.message?.content || 'No response';
 
       const newChatMessage: ChatMessage = {
         prompt: chatPrompt,
-        response: responseContent,
+        response: "Luca: " + responseContent,
       };
 
       // Append the new chat message to the array
       setState((prevState) => ({
         ...prevState,
         chatMessages: [...prevState.chatMessages, newChatMessage],
+        historyMessages: [...prevState.historyMessages, { role: 'user', content: state.inputValue }, { role: 'assistant', content: responseContent }],
         isChatVisible: true,
         isHeadersVisible: false,
         inputValue: '',
@@ -111,6 +120,7 @@ const App = () => {
     setState((prevState) => ({
       ...prevState,
       chatMessages: [],
+      historyMessages: [],
       isChatVisible: false,
       isHeadersVisible: true,
       inputValue: '',
@@ -153,7 +163,10 @@ const App = () => {
             {state.chatMessages.map((message, index) => (
               <div key={index} className="chatConversations">
                 <div className="chat-prompt">{message.prompt}</div>
-                <div className="chat-response">{message.response}</div>
+                <div
+                  className="chat-response"
+                  dangerouslySetInnerHTML={{ __html: message.response }}
+                />
               </div>
             ))}
             <Button textContent="Clear Chat" handleClick={handleClearChat} />
